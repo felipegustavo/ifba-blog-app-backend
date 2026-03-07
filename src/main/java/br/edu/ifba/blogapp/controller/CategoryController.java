@@ -1,15 +1,13 @@
 package br.edu.ifba.blogapp.controller;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
-import java.util.random.RandomGenerator;
 
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.ifba.blogapp.domain.dto.CategoryDTO;
-import br.edu.ifba.blogapp.exceptions.ResourceNotFoundException;
+import br.edu.ifba.blogapp.service.CategoryService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,50 +19,41 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import static br.edu.ifba.blogapp.domain.consts.PathConstant.CATEGORY_PATH;
+
 @RestController
-@RequestMapping("/category")
+@RequestMapping(CATEGORY_PATH)
+@RequiredArgsConstructor
 public class CategoryController {
 
-    private final List<CategoryDTO> categories = new ArrayList<>();
+    private final CategoryService service;
 
     @PostMapping
     public CategoryDTO create(@RequestBody @Valid CategoryDTO cat) {
-        Long id = Math.abs(Random.from(RandomGenerator.getDefault()).nextLong());
-        cat.setId(id);
-        categories.add(cat);
-        return cat;
+        return service.save(cat, null);
     }
     
     @PutMapping("/{id}")
     public CategoryDTO update(@PathVariable Long id, @RequestBody @Valid CategoryDTO cat) {
-        CategoryDTO c = getById(id);
-        c.setName(cat.getName());
-        c.setDescription(cat.getDescription());
-        return c;
+        return service.save(cat, id);
     }
 
     @GetMapping
     public List<CategoryDTO> getAll(@RequestParam(required = false) String search) {
-        if (search == null) {
-            return categories;
+        if (search == null || search.isEmpty()) {
+            return service.getAll();
         }
-
-        return categories
-            .stream()
-            .filter(c -> c.getName().toLowerCase().contains(search.toLowerCase()))
-            .toList();
+        return service.searchByName(search);
     }
 
     @GetMapping("/{id}")
     public CategoryDTO getById(@PathVariable Long id) {
-        var opt = categories.stream().filter(c -> c.getId().equals(id)).findFirst();
-        return opt.orElseThrow(() -> new ResourceNotFoundException(id));
+        return service.getById(id);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> delete(@PathVariable Long id) {
-        CategoryDTO c = getById(id);
-        categories.remove(c);
+        service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
