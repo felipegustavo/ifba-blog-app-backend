@@ -1,0 +1,581 @@
+{
+  "info": {
+    "_postman_id": "b3f5cf1e-2e7f-4cb6-9f5c-6b8e8fa3a1a1",
+    "name": "IFBA Blog App",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8081"
+    }
+  ],
+  "item": [
+    {
+      "name": "Category",
+      "item": [
+        {
+          "name": "Create Category",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Tecnologia\",\n  \"description\": \"Posts sobre tecnologia\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/category",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "category"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Category",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Tecnologia e Inovacao\",\n  \"description\": \"Posts sobre tecnologia e inovacao\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/category/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "category",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Categories",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/category",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "category"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Categories",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/category?search=tec",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "category"
+              ],
+              "query": [
+                {
+                  "key": "search",
+                  "value": "tec"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Category By Id",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/category/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "category",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Category",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/category/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "category",
+                "1"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "User",
+      "item": [
+        {
+          "name": "Create User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Felipe Gomes\",\n  \"email\": \"felipe@email.com\",\n  \"password\": \"123456\",\n  \"role\": \"ADMIN\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update User",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Felipe Gomes Silva\",\n  \"email\": \"felipe@email.com\",\n  \"password\": \"12345678\",\n  \"role\": \"AUTHOR\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Users",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/users",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get User By Id",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete User",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/users/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "users",
+                "1"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Post",
+      "item": [
+        {
+          "name": "Create Post",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Introducao ao Spring Boot\",\n  \"body\": \"Conteudo do post\",\n  \"criationDate\": \"2026-03-13\",\n  \"updateDate\": \"2026-03-13\",\n  \"categoryId\": 1,\n  \"userId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/posts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Post",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Introducao ao Spring Boot 3\",\n  \"body\": \"Conteudo atualizado\",\n  \"criationDate\": \"2026-03-13\",\n  \"updateDate\": \"2026-03-14\",\n  \"categoryId\": 1,\n  \"userId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/posts/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Posts",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/posts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Posts Paginated",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/posts?page=0&size=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Posts By User",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/posts?userId=1&page=0&size=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "userId",
+                  "value": "1"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Posts By Category",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/posts?categoryId=1&page=0&size=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "categoryId",
+                  "value": "1"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Search Posts By Keyword",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/posts?keyword=spring&page=0&size=10",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts"
+              ],
+              "query": [
+                {
+                  "key": "keyword",
+                  "value": "spring"
+                },
+                {
+                  "key": "page",
+                  "value": "0"
+                },
+                {
+                  "key": "size",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Post By Id",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/posts/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Post",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/posts/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "posts",
+                "1"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comment",
+      "item": [
+        {
+          "name": "Create Comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"Muito bom esse post\",\n  \"rating\": 9,\n  \"postId\": 1,\n  \"userId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/comments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "comments"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Comment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"body\": \"Muito bom esse post, parabens\",\n  \"rating\": 10,\n  \"postId\": 1,\n  \"userId\": 1\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/comments/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "comments",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get All Comments",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/comments",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "comments"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Comments By Post",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/comments?postId=1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "comments"
+              ],
+              "query": [
+                {
+                  "key": "postId",
+                  "value": "1"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Comment By Id",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/comments/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "comments",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Comment",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "{{baseUrl}}/comments/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "comments",
+                "1"
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

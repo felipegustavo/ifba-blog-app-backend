@@ -21,7 +21,7 @@ public class CategoryMapper {
             return null;
         }
 
-        return new CategoryEntity(dto.getId(), dto.getName(), dto.getDescription());
+        return new CategoryEntity(dto.getId(), dto.getName(), dto.getDescription(), null);
     }
 
 }

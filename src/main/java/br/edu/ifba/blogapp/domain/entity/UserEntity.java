@@ -2,7 +2,6 @@ package br.edu.ifba.blogapp.domain.entity;
 
 import java.util.List;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -19,20 +18,29 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "TB_CATEGORIA")
-public class CategoryEntity {
+@Table(name = "TB_USUARIO")
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "nome", nullable = false, length = 100)
+    @Column(name = "nome", nullable = false, length = 150)
     private String name;
 
-    @Column(name = "descricao", nullable = true, length = 1000)
-    private String description;
+    @Column(name = "email", nullable = false, unique = true, length = 150)
+    private String email;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
+    @Column(name = "senha", nullable = false, length = 255)
+    private String password;
+
+    @Column(name = "perfil", nullable = false, length = 50)
+    private String role;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<PostEntity> posts;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<CommentEntity> comments;
 
 }

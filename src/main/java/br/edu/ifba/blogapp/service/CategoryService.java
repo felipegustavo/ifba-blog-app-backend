@@ -2,9 +2,7 @@ package br.edu.ifba.blogapp.service;
 
 import java.util.List;
 
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import br.edu.ifba.blogapp.domain.dto.CategoryDTO;
 import br.edu.ifba.blogapp.exceptions.ResourceNotFoundException;
@@ -19,10 +17,17 @@ public class CategoryService {
     private final CategoryRepository repository;
     private final CategoryMapper mapper;
 
-    public CategoryDTO save(CategoryDTO cat, Long id) {
-        var entity = mapper.toEntity(cat);
-        entity.setId(id);
+    public CategoryDTO create(CategoryDTO dto) {
+        var entity = mapper.toEntity(dto);
+        entity.setId(null);
         return mapper.toDto(repository.save(entity));
+    }
+
+    public CategoryDTO update(Long id, CategoryDTO dto) {
+        var existing = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+        existing.setName(dto.getName());
+        existing.setDescription(dto.getDescription());
+        return mapper.toDto(repository.save(existing));
     }
 
     public List<CategoryDTO> getAll() {
@@ -34,11 +39,10 @@ public class CategoryService {
     }
 
     public CategoryDTO getById(Long id) {
-        var cat = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
-        return mapper.toDto(cat);
+        return mapper.toDto(repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id)));
     }
 
-    public void delete(@PathVariable Long id) {
+    public void delete(Long id) {
         if (!repository.existsById(id)) {
             throw new ResourceNotFoundException(id);
         }

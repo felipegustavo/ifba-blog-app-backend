@@ -1,6 +1,6 @@
 package br.edu.ifba.blogapp.controller;
 
-import static br.edu.ifba.blogapp.domain.consts.PathConstant.CATEGORY_PATH;
+import static br.edu.ifba.blogapp.domain.consts.PathConstant.COMMENT_PATH;
 
 import java.util.List;
 
@@ -15,38 +15,38 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.ifba.blogapp.domain.dto.CategoryDTO;
-import br.edu.ifba.blogapp.service.CategoryService;
+import br.edu.ifba.blogapp.domain.dto.CommentDTO;
+import br.edu.ifba.blogapp.service.CommentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(CATEGORY_PATH)
+@RequestMapping(COMMENT_PATH)
 @RequiredArgsConstructor
-public class CategoryController {
+public class CommentController {
 
-    private final CategoryService service;
+    private final CommentService service;
 
     @PostMapping
-    public CategoryDTO create(@RequestBody @Valid CategoryDTO dto) {
+    public CommentDTO create(@RequestBody @Valid CommentDTO dto) {
         return service.create(dto);
     }
 
     @PutMapping("/{id}")
-    public CategoryDTO update(@PathVariable Long id, @RequestBody @Valid CategoryDTO dto) {
+    public CommentDTO update(@PathVariable Long id, @RequestBody @Valid CommentDTO dto) {
         return service.update(id, dto);
     }
 
     @GetMapping
-    public List<CategoryDTO> getAll(@RequestParam(required = false) String search) {
-        if (search == null || search.isBlank()) {
-            return service.getAll();
+    public List<CommentDTO> getAll(@RequestParam(required = false) Long postId) {
+        if (postId != null) {
+            return service.getByPostId(postId);
         }
-        return service.searchByName(search);
+        return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public CategoryDTO getById(@PathVariable Long id) {
+    public CommentDTO getById(@PathVariable Long id) {
         return service.getById(id);
     }
 

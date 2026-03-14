@@ -24,6 +24,13 @@ public class ErrorControllerAdvice {
         return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(DuplicateEmailException.class)
+    public ResponseEntity<ErrorResponse> handleDuplicateEmailException(DuplicateEmailException ex) {
+        var response = new ErrorResponse("EMAIL DUPLICADO", ex.getMessage(), null);
+
+        return new ResponseEntity<>(response, HttpStatus.CONFLICT);
+    }
+
     @ExceptionHandler(ObjectOptimisticLockingFailureException.class)
     public ResponseEntity<ErrorResponse> handleObjectOptimisticLockingFailureException(ObjectOptimisticLockingFailureException ex) {
         var id = ex.getIdentifier();

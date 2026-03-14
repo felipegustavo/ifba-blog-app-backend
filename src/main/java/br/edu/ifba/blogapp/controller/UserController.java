@@ -1,6 +1,6 @@
 package br.edu.ifba.blogapp.controller;
 
-import static br.edu.ifba.blogapp.domain.consts.PathConstant.CATEGORY_PATH;
+import static br.edu.ifba.blogapp.domain.consts.PathConstant.USER_PATH;
 
 import java.util.List;
 
@@ -12,41 +12,37 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.ifba.blogapp.domain.dto.CategoryDTO;
-import br.edu.ifba.blogapp.service.CategoryService;
+import br.edu.ifba.blogapp.domain.dto.UserDTO;
+import br.edu.ifba.blogapp.service.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping(CATEGORY_PATH)
+@RequestMapping(USER_PATH)
 @RequiredArgsConstructor
-public class CategoryController {
+public class UserController {
 
-    private final CategoryService service;
+    private final UserService service;
 
     @PostMapping
-    public CategoryDTO create(@RequestBody @Valid CategoryDTO dto) {
+    public UserDTO create(@RequestBody @Valid UserDTO dto) {
         return service.create(dto);
     }
 
     @PutMapping("/{id}")
-    public CategoryDTO update(@PathVariable Long id, @RequestBody @Valid CategoryDTO dto) {
+    public UserDTO update(@PathVariable Long id, @RequestBody @Valid UserDTO dto) {
         return service.update(id, dto);
     }
 
     @GetMapping
-    public List<CategoryDTO> getAll(@RequestParam(required = false) String search) {
-        if (search == null || search.isBlank()) {
-            return service.getAll();
-        }
-        return service.searchByName(search);
+    public List<UserDTO> getAll() {
+        return service.getAll();
     }
 
     @GetMapping("/{id}")
-    public CategoryDTO getById(@PathVariable Long id) {
+    public UserDTO getById(@PathVariable Long id) {
         return service.getById(id);
     }
 
