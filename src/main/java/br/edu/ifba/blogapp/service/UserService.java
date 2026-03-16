@@ -24,6 +24,7 @@ public class UserService {
         validateDuplicateEmailForCreate(dto.getEmail());
         var entity = mapper.toEntity(dto);
         entity.setId(null);
+        entity.setRole("USER");
         entity.setPassword(passwordEncoder.encode(dto.getPassword()));
         return mapper.toDto(repository.save(entity));
     }

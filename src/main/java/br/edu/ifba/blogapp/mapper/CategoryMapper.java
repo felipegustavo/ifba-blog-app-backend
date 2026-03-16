@@ -13,7 +13,7 @@ public class CategoryMapper {
             return null;
         }
 
-        return new CategoryDTO(entity.getId(), entity.getName(), entity.getDescription());
+        return new CategoryDTO(entity.getId(), entity.getName());
     }
     
     public CategoryEntity toEntity(CategoryDTO dto) {
@@ -21,7 +21,7 @@ public class CategoryMapper {
             return null;
         }
 
-        return new CategoryEntity(dto.getId(), dto.getName(), dto.getDescription(), null);
+        return new CategoryEntity(dto.getId(), dto.getName(), null);
     }
 
 }

@@ -6,9 +6,13 @@ import br.edu.ifba.blogapp.domain.dto.CommentDTO;
 import br.edu.ifba.blogapp.domain.entity.CommentEntity;
 import br.edu.ifba.blogapp.domain.entity.PostEntity;
 import br.edu.ifba.blogapp.domain.entity.UserEntity;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor
 public class CommentMapper {
+
+    private final UserMapper userMapper;
 
     public CommentDTO toDto(CommentEntity entity) {
         if (entity == null) {
@@ -20,7 +24,9 @@ public class CommentMapper {
                 entity.getBody(),
                 entity.getRating(),
                 entity.getPost() != null ? entity.getPost().getId() : null,
-                entity.getUser() != null ? entity.getUser().getId() : null);
+                entity.getUser() != null ? entity.getUser().getId() : null,
+                entity.getCreationDate(),
+                userMapper.toDto(entity.getUser()));
     }
 
     public CommentEntity toEntity(CommentDTO dto, PostEntity post, UserEntity user) {

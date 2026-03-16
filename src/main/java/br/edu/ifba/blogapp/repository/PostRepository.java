@@ -1,5 +1,8 @@
 package br.edu.ifba.blogapp.repository;
 
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -26,10 +29,6 @@ public interface PostRepository extends JpaRepository<PostEntity, Long> {
             + "where translate(lower(pe.titulo), '" + ACCENTED_CHARS + "', '" + NORMALIZED_CHARS + "') "
             + "like concat('%', translate(lower(:keyword), '" + ACCENTED_CHARS + "', '" + NORMALIZED_CHARS
             + "'), '%')",
-            countQuery = "select count(*) from tb_post pe "
-                    + "where translate(lower(pe.titulo), '" + ACCENTED_CHARS + "', '" + NORMALIZED_CHARS + "') "
-                    + "like concat('%', translate(lower(:keyword), '" + ACCENTED_CHARS + "', '"
-                    + NORMALIZED_CHARS + "'), '%')",
             nativeQuery = true)
     Page<PostEntity> findPostsByTitleKeyword(@Param("keyword") String keyword, Pageable pageable);
 

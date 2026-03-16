@@ -27,8 +27,6 @@ public class UserDTO {
     @Size(min = 6, max = 255)
     private String password;
 
-    @NotBlank
-    @Size(min = 3, max = 50)
     private String role;
 
 }

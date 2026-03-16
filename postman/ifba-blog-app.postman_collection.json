@@ -1,15 +1,10 @@
 {
   "info": {
-    "_postman_id": "b3f5cf1e-2e7f-4cb6-9f5c-6b8e8fa3a1a1",
+    "_postman_id": "db909726-d34f-4a78-b560-0d463dd383f4",
     "name": "IFBA Blog App",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "7315415"
   },
-  "variable": [
-    {
-      "key": "baseUrl",
-      "value": "http://localhost:8081"
-    }
-  ],
   "item": [
     {
       "name": "Category",
@@ -26,18 +21,19 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Tecnologia\",\n  \"description\": \"Posts sobre tecnologia\"\n}"
+              "raw": "{\n  \"name\": \"Tecnologia\"\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/category",
+              "raw": "{{baseUrl}}/categories",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "category"
+                "categories"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Update Category",
@@ -51,46 +47,50 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"name\": \"Tecnologia e Inovacao\",\n  \"description\": \"Posts sobre tecnologia e inovacao\"\n}"
+              "raw": "{\n  \"name\": \"Tecnologia e Inovacao\"\n}"
             },
             "url": {
-              "raw": "{{baseUrl}}/category/1",
+              "raw": "{{baseUrl}}/categories/1",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "category",
+                "categories",
                 "1"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Get All Categories",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
-              "raw": "{{baseUrl}}/category",
+              "raw": "{{baseUrl}}/categories",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "category"
+                "categories"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Search Categories",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
-              "raw": "{{baseUrl}}/category?search=tec",
+              "raw": "{{baseUrl}}/categories?search=tec",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "category"
+                "categories"
               ],
               "query": [
                 {
@@ -99,39 +99,44 @@
                 }
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Get Category By Id",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
-              "raw": "{{baseUrl}}/category/1",
+              "raw": "{{baseUrl}}/categories/1",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "category",
+                "categories",
                 "1"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Delete Category",
           "request": {
             "method": "DELETE",
+            "header": [],
             "url": {
-              "raw": "{{baseUrl}}/category/1",
+              "raw": "{{baseUrl}}/categories/1",
               "host": [
                 "{{baseUrl}}"
               ],
               "path": [
-                "category",
+                "categories",
                 "1"
               ]
             }
-          }
+          },
+          "response": []
         }
       ]
     },
@@ -161,7 +166,8 @@
                 "users"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Update User",
@@ -187,12 +193,14 @@
                 "1"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Get All Users",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/users",
               "host": [
@@ -202,12 +210,14 @@
                 "users"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Get User By Id",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/users/1",
               "host": [
@@ -218,12 +228,14 @@
                 "1"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Delete User",
           "request": {
             "method": "DELETE",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/users/1",
               "host": [
@@ -234,7 +246,8 @@
                 "1"
               ]
             }
-          }
+          },
+          "response": []
         }
       ]
     },
@@ -264,7 +277,8 @@
                 "posts"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Update Post",
@@ -290,12 +304,14 @@
                 "1"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Get All Posts",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/posts",
               "host": [
@@ -305,12 +321,14 @@
                 "posts"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Get All Posts Paginated",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/posts?page=0&size=10",
               "host": [
@@ -330,12 +348,14 @@
                 }
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Get Posts By User",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/posts?userId=1&page=0&size=10",
               "host": [
@@ -359,12 +379,14 @@
                 }
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Get Posts By Category",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/posts?categoryId=1&page=0&size=10",
               "host": [
@@ -388,12 +410,14 @@
                 }
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Search Posts By Keyword",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/posts?keyword=spring&page=0&size=10",
               "host": [
@@ -417,12 +441,14 @@
                 }
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Get Post By Id",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/posts/1",
               "host": [
@@ -433,12 +459,14 @@
                 "1"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Delete Post",
           "request": {
             "method": "DELETE",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/posts/1",
               "host": [
@@ -449,7 +477,8 @@
                 "1"
               ]
             }
-          }
+          },
+          "response": []
         }
       ]
     },
@@ -479,7 +508,8 @@
                 "comments"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Update Comment",
@@ -505,12 +535,14 @@
                 "1"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Get All Comments",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/comments",
               "host": [
@@ -520,12 +552,14 @@
                 "comments"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Get Comments By Post",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/comments?postId=1",
               "host": [
@@ -541,12 +575,14 @@
                 }
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Get Comment By Id",
           "request": {
             "method": "GET",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/comments/1",
               "host": [
@@ -557,12 +593,14 @@
                 "1"
               ]
             }
-          }
+          },
+          "response": []
         },
         {
           "name": "Delete Comment",
           "request": {
             "method": "DELETE",
+            "header": [],
             "url": {
               "raw": "{{baseUrl}}/comments/1",
               "host": [
@@ -573,9 +611,16 @@
                 "1"
               ]
             }
-          }
+          },
+          "response": []
         }
       ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8081"
     }
   ]
 }

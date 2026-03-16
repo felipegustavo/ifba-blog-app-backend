@@ -6,9 +6,14 @@ import br.edu.ifba.blogapp.domain.dto.PostDTO;
 import br.edu.ifba.blogapp.domain.entity.CategoryEntity;
 import br.edu.ifba.blogapp.domain.entity.PostEntity;
 import br.edu.ifba.blogapp.domain.entity.UserEntity;
+import lombok.RequiredArgsConstructor;
 
 @Component
+@RequiredArgsConstructor
 public class PostMapper {
+
+    private final UserMapper userMapper;
+    private final CategoryMapper categoryMapper;
 
     public PostDTO toDto(PostEntity entity) {
         if (entity == null) {
@@ -19,10 +24,13 @@ public class PostMapper {
                 entity.getId(),
                 entity.getTitle(),
                 entity.getBody(),
-                entity.getCriationDate(),
+                entity.getCreationDate(),
                 entity.getUpdateDate(),
                 entity.getCategory() != null ? entity.getCategory().getId() : null,
-                entity.getUser() != null ? entity.getUser().getId() : null);
+                entity.getUser() != null ? entity.getUser().getId() : null,
+                categoryMapper.toDto(entity.getCategory()),
+                userMapper.toDto(entity.getUser())
+            );
     }
 
     public PostEntity toEntity(PostDTO dto, CategoryEntity category, UserEntity user) {
@@ -34,8 +42,6 @@ public class PostMapper {
         entity.setId(dto.getId());
         entity.setTitle(dto.getTitle());
         entity.setBody(dto.getBody());
-        entity.setCriationDate(dto.getCriationDate());
-        entity.setUpdateDate(dto.getUpdateDate());
         entity.setCategory(category);
         entity.setUser(user);
         entity.setComments(null);
@@ -45,8 +51,6 @@ public class PostMapper {
     public void updateEntity(PostEntity entity, PostDTO dto, CategoryEntity category, UserEntity user) {
         entity.setTitle(dto.getTitle());
         entity.setBody(dto.getBody());
-        entity.setCriationDate(dto.getCriationDate());
-        entity.setUpdateDate(dto.getUpdateDate());
         entity.setCategory(category);
         entity.setUser(user);
     }

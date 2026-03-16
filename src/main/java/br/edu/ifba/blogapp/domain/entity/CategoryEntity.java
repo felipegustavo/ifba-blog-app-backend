@@ -29,9 +29,6 @@ public class CategoryEntity {
     @Column(name = "nome", nullable = false, length = 100)
     private String name;
 
-    @Column(name = "descricao", nullable = true, length = 1000)
-    private String description;
-
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "category")
     private List<PostEntity> posts;
 

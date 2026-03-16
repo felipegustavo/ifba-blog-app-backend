@@ -26,7 +26,6 @@ public class CategoryService {
     public CategoryDTO update(Long id, CategoryDTO dto) {
         var existing = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
         existing.setName(dto.getName());
-        existing.setDescription(dto.getDescription());
         return mapper.toDto(repository.save(existing));
     }
 

@@ -1,6 +1,6 @@
 package br.edu.ifba.blogapp.domain.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -23,14 +23,18 @@ public class PostDTO {
     @NotBlank
     private String body;
 
-    private LocalDate criationDate;
+    private LocalDateTime creationDate;
 
-    private LocalDate updateDate;
+    private LocalDateTime updateDate;
 
     @NotNull
     private Long categoryId;
 
     @NotNull
     private Long userId;
+
+    private CategoryDTO category;
+
+    private UserDTO user;
 
 }

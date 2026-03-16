@@ -42,7 +42,7 @@ public class CommentService {
     }
 
     public List<CommentDTO> getAll() {
-        return repository.findAll().stream().map(mapper::toDto).toList();
+        return repository.findAllByCreationDateDesc().stream().map(mapper::toDto).toList();
     }
 
     public List<CommentDTO> getByPostId(Long postId) {
