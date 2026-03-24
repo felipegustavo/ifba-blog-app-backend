@@ -8,6 +8,7 @@ import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.orm.ObjectOptimisticLockingFailureException;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,7 +18,7 @@ import br.edu.ifba.blogapp.domain.dto.ErrorResponse;
 @ControllerAdvice
 public class ErrorControllerAdvice {
 
-    @ExceptionHandler(ResourceNotFoundException.class)
+    @ExceptionHandler({ ResourceNotFoundException.class, UsernameNotFoundException.class})
     public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex) {
         var response = new ErrorResponse("RECURSO NÃO ENCONTRADO", ex.getMessage(), null);
         
