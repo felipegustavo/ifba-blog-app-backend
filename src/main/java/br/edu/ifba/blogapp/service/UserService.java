@@ -5,8 +5,11 @@ import java.util.List;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import br.edu.ifba.blogapp.domain.dto.UserPasswordUpdateDTO;
+import br.edu.ifba.blogapp.domain.dto.UserProfileUpdateDTO;
 import br.edu.ifba.blogapp.domain.dto.UserDTO;
 import br.edu.ifba.blogapp.exceptions.DuplicateEmailException;
+import br.edu.ifba.blogapp.exceptions.InvalidPasswordException;
 import br.edu.ifba.blogapp.exceptions.ResourceNotFoundException;
 import br.edu.ifba.blogapp.mapper.UserMapper;
 import br.edu.ifba.blogapp.repository.UserRepository;
@@ -35,6 +38,23 @@ public class UserService {
         mapper.updateEntity(existing, dto);
         existing.setPassword(passwordEncoder.encode(dto.getPassword()));
         return mapper.toDto(repository.save(existing));
+    }
+
+    public UserDTO updateProfile(Long id, UserProfileUpdateDTO dto) {
+        validateDuplicateEmailForUpdate(id, dto.email());
+        var existing = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+        existing.setName(dto.name());
+        existing.setEmail(dto.email());
+        return mapper.toDto(repository.save(existing));
+    }
+
+    public void updatePassword(Long id, UserPasswordUpdateDTO dto) {
+        var existing = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException(id));
+        if (!passwordEncoder.matches(dto.currentPassword(), existing.getPassword())) {
+            throw new InvalidPasswordException();
+        }
+        existing.setPassword(passwordEncoder.encode(dto.newPassword()));
+        repository.save(existing);
     }
 
     public List<UserDTO> getAll() {
